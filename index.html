@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amin Khattab - Web Designer</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1e1e1e;
+            color: white;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            transition: background-color 1s ease;
+        }
+
+        #transform-btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 2rem;
+            border: none;
+            color: white;
+            background-color: #333;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+        }
+
+        #transform-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
+        }
+
+        .transformed {
+            background-color: #121212;
+            animation: smooth-bg 3s infinite alternate;
+        }
+
+        @keyframes smooth-bg {
+            0% {
+                background-color: #121212;
+            }
+
+            50% {
+                background-color: #333;
+            }
+
+            100% {
+                background-color: #121212;
+            }
+        }
+
+        .name-animation {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4747;
+            opacity: 0;
+            animation: slide-in 1s forwards ease, fade-in 2s ease;
+            margin: 1rem;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateY(100vh);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 2rem;
+            text-align: center;
+            opacity: 0;
+            color: lightgray;
+            animation: fade-in 1s forwards, pop-in 0.6s ease-out both;
+            animation-delay: 1.2s;
+            font-family: 'Courier New', monospace;
+        }
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button id="transform-btn">Transform</button>
+    <div class="info" id="info" style="display: none;">
+        Amin Khattab<br>
+        Web Designer<br>
+        aminghost957@gmail.com
+    </div>
+    <script>
+        const button = document.getElementById("transform-btn");
+        const info = document.getElementById("info");
+        button.addEventListener("click", () => {
+            document.body.classList.toggle("transformed");
+            button.style.display = "none";
+            createNameAnimation("Amin Khattab");
+            setTimeout(() => {
+                info.style.display = "block";
+            }, 1000);
+        });
+
+        function createNameAnimation(name) {
+            const nameDiv = document.createElement("div");
+            nameDiv.classList.add("name-animation");
+            nameDiv.textContent = name;
+            document.body.appendChild(nameDiv);
+        }
+    </script>
+</body>
+
+</html>
